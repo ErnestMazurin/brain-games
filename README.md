@@ -1,5 +1,5 @@
-Brain games
+# Brain games
 
-Setup
+## Setup
 
 make install
