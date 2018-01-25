@@ -1,13 +1,13 @@
-export default (getAnswer, getRandom, task) => {
+export default (getAnswer, getRandom, Task) => {
   const questionItem = () => {
-    task.content = getRandom();
-    console.log(`Question: ${task.toString()}`);
+    const tasklItem = new Task(getRandom());
+    console.log(`Question: ${tasklItem.toString()}`);
     const answer = getAnswer();
-    if (task.solve() === answer) {
+    if (tasklItem.solve() === answer) {
       console.log('Correct!');
       return true;
     }
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was '${task.solve()}'.`);
+    console.log(`'${answer}' is wrong answer ;(. Correct answer was '${tasklItem.solve()}'.`);
     return false;
   };
   return questionItem;

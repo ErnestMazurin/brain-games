@@ -1,12 +1,12 @@
 class EvenTask {
-  constructor() {
-    this.content = [];
-  } 
+  constructor(number) {
+    this.number = number;
+  }
   solve() {
-    return this.content[0] % 2 === 0 ? 'yes' : 'no';
+    return this.number % 2 === 0 ? 'yes' : 'no';
   }
   toString() {
-    return `${this.content[0]}`;
+    return String(this.number);
   }
 }
 

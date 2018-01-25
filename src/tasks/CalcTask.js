@@ -1,12 +1,21 @@
+const symbolDisp = {
+  '+': (a, b) => a + b,
+  '-': (a, b) => a - b,
+  '*': (a, b) => a * b,
+};
+
 class CalcTask {
-  constructor() {
-    this.content = [];
+  constructor(args) {
+    const [number1, symbol, number2] = args;
+    this.number1 = number1;
+    this.number2 = number2;
+    this.symbol = symbol;
   }
   solve() {
-    return String(eval(`${this.content[0]} ${this.content[1]} ${this.content[2]}`));
+    return String(symbolDisp[this.symbol](this.number1, this.number2));
   }
   toString() {
-    return `${this.content[0]} ${this.content[1]} ${this.content[2]}`;
+    return `${this.number1} ${this.symbol} ${this.number2}`;
   }
 }
 

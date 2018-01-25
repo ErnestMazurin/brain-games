@@ -1,10 +1,10 @@
 import readlineSync from 'readline-sync';
-import CalcTask from '../tasks/CalcTask.js';
-import questionMaker from '../makers/questionMaker.js';
-import gameMaker from '../makers/gameMaker.js';
-import random from '../random.js'
+import CalcTask from '../tasks/CalcTask';
+import questionMaker from '../makers/questionMaker';
+import gameMaker from '../makers/gameMaker';
+import random from '../random';
 import gamerName from '..';
-import startString from '../startString.js'
+import startString from '../startString';
 
 // -------------------------------------------------------------------------------
 // =========================== game config =======================================
@@ -17,9 +17,9 @@ const symbolSet = ['+', '-', '*']; // available arithmetic operators
 // ======================= input data functions ==================================
 // task`s data
 const calcRandom = () => {
-  const number1 = random(minRandomInterval1,  maxRandomInterval1)();
-  const number2 = random(minRandomInterval2,  maxRandomInterval2)();
-  const symbol = symbolSet[Math.floor(Math.random()*symbolSet.length)];
+  const number1 = random(minRandomInterval1, maxRandomInterval1)();
+  const number2 = random(minRandomInterval2, maxRandomInterval2)();
+  const symbol = symbolSet[Math.floor(Math.random() * symbolSet.length)];
   return [number1, symbol, number2];
 };
 
@@ -28,8 +28,7 @@ const calcAnswer = () => readlineSync.question('Your answer:  ');
 
 // -------------------------------------------------------------------------------
 // ==================== making game objects ======================================
-const calcTask = new CalcTask();
-const gameQuestion = questionMaker(calcAnswer, calcRandom, calcTask)
+const gameQuestion = questionMaker(calcAnswer, calcRandom, CalcTask);
 const calcGame = gameMaker(gameSteps, gameQuestion);
 
 // -------------------------------------------------------------------------------

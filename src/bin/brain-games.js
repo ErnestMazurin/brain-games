@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import  brain_basic from '../games/basic.js';
+import basicMain from '../games/basic';
 
- brain_basic();
+basicMain();
