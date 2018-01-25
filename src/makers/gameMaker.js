@@ -1,18 +1,18 @@
+const gameCycle = (stepsNumber, question, counter) => {
+  if (counter >= stepsNumber) {
+    return counter;
+  }
+  const iterResult = question();
+  if (iterResult) {
+    return gameCycle(stepsNumber, question, counter + 1);
+  }
+  return counter;
+};
+
 const gameMaker = (stepsNumber, question) => {
   const gameItem = (name) => {
-    const iter = (counter) => {
-      if (counter >= stepsNumber) {
-        return counter;
-      }
-
-      const iterResult = question();
-      if (iterResult) {
-        return iter(counter + 1);
-      }
-      return counter;
-    };
-    const result = iter(0);
-    if (result < stepsNumber) {
+    const gameResult = gameCycle(stepsNumber, question, 0);
+    if (gameResult < stepsNumber) {
       console.log(`Let's try again, ${name}!`);
     } else {
       console.log(`Congratulations, ${name}!`);

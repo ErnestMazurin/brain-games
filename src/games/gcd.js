@@ -1,31 +1,30 @@
-import userAnswer from '../userAnswer';
-import CalcTask from '../tasks/CalcTask';
+
+import GCDtask from '../tasks/GCDtask';
 import questionMaker from '../makers/questionMaker';
 import gameMaker from '../makers/gameMaker';
 import mainMaker from '../makers/mainMaker';
 import random from '../random';
+import userAnswer from '../userAnswer';
 
 // -------------------------------------------------------------------------------
 // =========================== game config =======================================
 const gameSteps = 3; // number of steps
-const [minRandomInterval1, maxRandomInterval1] = [0, 100]; // first interval of random numbers
-const [minRandomInterval2, maxRandomInterval2] = [0, 100]; // second interval of random numbers
-const symbolSet = ['+', '-', '*']; // available arithmetic operators
+const [minRandomInterval1, maxRandomInterval1] = [1, 100]; // first interval of random numbers
+const [minRandomInterval2, maxRandomInterval2] = [1, 100]; // second interval of random numbers
 
 // -------------------------------------------------------------------------------
 // ======================= input data functions ==================================
 // task`s data
-const calcRandom = () => {
+const gcdRandom = () => {
   const number1 = random(minRandomInterval1, maxRandomInterval1)();
   const number2 = random(minRandomInterval2, maxRandomInterval2)();
-  const symbol = symbolSet[Math.floor(Math.random() * symbolSet.length)];
-  return [number1, symbol, number2];
+  return [number1, number2];
 };
 
 // -------------------------------------------------------------------------------
 // ==================== making game objects ======================================
-const gameQuestion = questionMaker(userAnswer, calcRandom, CalcTask);
-const calcGame = gameMaker(gameSteps, gameQuestion);
-const calcMain = mainMaker('What is the result of the expression?\n', calcGame);
+const gameQuestion = questionMaker(userAnswer, gcdRandom, GCDtask);
+const gcdGame = gameMaker(gameSteps, gameQuestion);
+const gcdMain = mainMaker('Find the greatest common division of given numbers.\n', gcdGame);
 
-export default calcMain;
+export default gcdMain;

@@ -1,11 +1,9 @@
 import gamerName from '..';
-import startString from '../startString';
 
 // -------------------------------------------------------------------------------
 // ===================== main game function ======================================
 const basicMain = () => {
-  startString();
-
+  console.log('Welcome to the Brain Games!');
   gamerName();
 };
 
