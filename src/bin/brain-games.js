@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import greeting from '..';
+import  brain_basic from '../games/basic.js';
 
-console.log('Welcome to the Brain Games!');
-greeting();
+ brain_basic();

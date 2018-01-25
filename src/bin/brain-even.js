@@ -1,10 +1,5 @@
 #!/usr/bin/env node
 
-import greeting from '..';
-import evenGame from '../evenGame';
+import brain_even from '../games/even.js';
 
-console.log('Welcome to the Brain Games!');
-console.log('Answer "yes" if number even otherwise answer "no"\n');
-
-const gamer = greeting();
-evenGame(gamer);
+brain_even();
