@@ -1,10 +1,10 @@
-import gamerName from '..';
+import { getName } from '..';
 
 // -------------------------------------------------------------------------------
 // ===================== main game function ======================================
 const basicMain = () => {
   console.log('Welcome to the Brain Games!');
-  gamerName();
+  getName();
 };
 
 export default basicMain;

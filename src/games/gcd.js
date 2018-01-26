@@ -1,10 +1,5 @@
-
-import GCDtask from '../tasks/GCDtask';
-import questionMaker from '../makers/questionMaker';
-import gameMaker from '../makers/gameMaker';
-import mainMaker from '../makers/mainMaker';
-import random from '../random';
-import userAnswer from '../userAnswer';
+import gameMaker from '../gameMaker';
+import { getName, getAnswer, random } from '..';
 
 // -------------------------------------------------------------------------------
 // =========================== game config =======================================
@@ -22,9 +17,30 @@ const gcdRandom = () => {
 };
 
 // -------------------------------------------------------------------------------
-// ==================== making game objects ======================================
-const gameQuestion = questionMaker(userAnswer, gcdRandom, GCDtask);
-const gcdGame = gameMaker(gameSteps, gameQuestion);
-const gcdMain = mainMaker('Find the greatest common division of given numbers.\n', gcdGame);
+// ============================== task object ====================================
+const gcd = (a, b) => {
+  if (b === 0) {
+    return a;
+  }
+  return gcd(b, a % b);
+};
+
+class GCDtask {
+  constructor(args) {
+    const [number1, number2] = args;
+    this.number1 = number1;
+    this.number2 = number2;
+  }
+  solve() {
+    return String(gcd(this.number1, this.number2));
+  }
+  toString() {
+    return `${this.number1} ${this.number2}`;
+  }
+}
+
+// -------------------------------------------------------------------------------
+// ==================== making game object =======================================
+const gcdMain = gameMaker('Find the greatest common division of given numbers.\n', gameSteps, getName, getAnswer, gcdRandom, GCDtask);
 
 export default gcdMain;
