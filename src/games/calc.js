@@ -10,8 +10,7 @@ const mathSymbols = {
   '-': (a, b) => a - b,
   '*': (a, b) => a * b,
 };
-// ======================= input data function ==================================
-// task`s data
+
 const calcRandom = () => {
   const number1 = random(minRandomInterval1, maxRandomInterval1)();
   const number2 = random(minRandomInterval2, maxRandomInterval2)();
@@ -21,7 +20,7 @@ const calcRandom = () => {
 };
 
 // -------------------------------------------------------------------------------
-// ==================== making game object =======================================
+// ============================ making game=======================================
 const calcGame = () => {
   const greeting = 'What is the result of the expression?';
   const solve = content => String(mathSymbols[content[1]](content[0], content[2]));

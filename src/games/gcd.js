@@ -6,8 +6,6 @@ import { random } from '../functions';
 const [minRandomInterval1, maxRandomInterval1] = [1, 100]; // first interval of random numbers
 const [minRandomInterval2, maxRandomInterval2] = [1, 100]; // second interval of random numbers
 
-// -------------------------------------------------------------------------------
-// ======================= input data functions ==================================
 const gcdRandom = () => {
   const number1 = random(minRandomInterval1, maxRandomInterval1)();
   const number2 = random(minRandomInterval2, maxRandomInterval2)();
@@ -15,7 +13,7 @@ const gcdRandom = () => {
 };
 
 // -------------------------------------------------------------------------------
-// ==================== making game ==============================================
+// ========================== making game ========================================
 const gcd = (a, b) => {
   if (b === 0) {
     return a;

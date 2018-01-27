@@ -4,9 +4,6 @@ import { random } from '../functions';
 // -------------------------------------------------------------------------------
 // =========================== game config =======================================
 const [minRandomInterval1, maxRandomInterval1] = [0, 10000]; // interval of random numbers
-
-// -------------------------------------------------------------------------------
-// ======================= input data functions ==================================
 const balanceRandom = random(minRandomInterval1, maxRandomInterval1); // task`s data
 
 // -------------------------------------------------------------------------------

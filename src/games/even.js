@@ -6,7 +6,7 @@ import { random } from '../functions';
 const [minRandomInterval, maxRandomInterval] = [0, 100]; // interval of random numbers
 const evenRandom = random(minRandomInterval, maxRandomInterval); // task`s data
 
-// ============================== task object ====================================
+// ============================== making game ====================================
 const evenGame = () => {
   const greeting = 'Answer "yes" if number even otherwise answer "no"';
   const solve = num => (num % 2 === 0 ? 'yes' : 'no');
