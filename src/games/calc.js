@@ -1,5 +1,5 @@
-import gameMaker from '../gameMaker';
-import { getName, getAnswer, random } from '..';
+import gameMaker from '..';
+import { getName, getAnswer, random } from '../functions';
 
 // -------------------------------------------------------------------------------
 // =========================== game config =======================================

@@ -1,11 +1,31 @@
-import readlineSync from 'readline-sync';
-
-export const getName = () => {
-  const name = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${name}!\n`);
-  return name;
+const gameCycle = (stepsNumber, userAnswer, getRandom, Task, counter) => {
+  if (counter >= stepsNumber) {
+    return counter;
+  }
+  const tasklItem = new Task(getRandom());
+  console.log(`Question: ${tasklItem.toString()}`);
+  const answer = userAnswer();
+  if (tasklItem.solve() === answer) {
+    console.log('Correct!');
+    return gameCycle(stepsNumber, userAnswer, getRandom, Task, counter + 1);
+  }
+  console.log(`'${answer}' is wrong answer ;(. Correct answer was '${tasklItem.solve()}'.`);
+  return counter;
 };
 
-export const getAnswer = () => readlineSync.question('Your answer:  ');
+const gameMaker = (gameGreeting, stepsNumber, userName, userAnswer, getRandom, Task) => {
+  const main = () => {
+    console.log('Welcome to the Brain Games!');
+    console.log(`${gameGreeting}\n`);
+    const gamer = userName();
+    const gameResult = gameCycle(stepsNumber, userAnswer, getRandom, Task, 0);
+    if (gameResult < stepsNumber) {
+      console.log(`Let's try again, ${gamer}!`);
+    } else {
+      console.log(`Congratulations, ${gamer}!`);
+    }
+  };
+  return main;
+};
 
-export const random = (min, max) => (() => Math.floor(Math.random() * (max - (min + 1))) + min);
+export default gameMaker;
