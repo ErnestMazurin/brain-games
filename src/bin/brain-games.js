@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import basicMain from '../games/basic';
+import basicGame from '../games/basic';
 
-basicMain();
+basicGame();
