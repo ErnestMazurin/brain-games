@@ -9,16 +9,17 @@ const primeRandom = random(minRandomInterval, maxRandomInterval); // task`s data
 // -------------------------------------------------------------------------------
 // ============================== making game ====================================
 const isPrime = (number) => {
-  const iter = (num, i) => {
-    if (num % i === 0) {
+  const iter = (i) => {
+    if (i === number) {
       return true;
     }
-    if (i >= num) {
+    if (number % i === 0) {
       return false;
     }
-    return iter(num, i + 1);
+    return iter(i + 1);
   };
-  return iter(number, 2);
+
+  return iter(2);
 };
 
 const primeGame = () => {
