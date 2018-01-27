@@ -1,9 +1,8 @@
 import gameMaker from '..';
-import { getName, getAnswer, random } from '../functions';
+import { random } from '../functions';
 
 // -------------------------------------------------------------------------------
 // =========================== game config =======================================
-const gameSteps = 3; // number of steps
 const [minRandomInterval1, maxRandomInterval1] = [1, 100]; // first interval of random numbers
 const [minRandomInterval2, maxRandomInterval2] = [1, 100]; // second interval of random numbers
 
@@ -30,6 +29,10 @@ class GCDtask {
     const [number1, number2] = args;
     this.number1 = number1;
     this.number2 = number2;
+    this.greeting = 'Find the greatest common division of given numbers.';
+  }
+  getGreeting() {
+    return this.greeting;
   }
   solve() {
     return String(gcd(this.number1, this.number2));
@@ -41,6 +44,6 @@ class GCDtask {
 
 // -------------------------------------------------------------------------------
 // ==================== making game object =======================================
-const gcdMain = gameMaker('Find the greatest common division of given numbers.\n', gameSteps, getName, getAnswer, gcdRandom, GCDtask);
+const gcdMain = gameMaker(gcdRandom, GCDtask);
 
 export default gcdMain;

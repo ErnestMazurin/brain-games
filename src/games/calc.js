@@ -1,9 +1,8 @@
 import gameMaker from '..';
-import { getName, getAnswer, random } from '../functions';
+import { random } from '../functions';
 
 // -------------------------------------------------------------------------------
 // =========================== game config =======================================
-const gameSteps = 3; // number of steps
 const [minRandomInterval1, maxRandomInterval1] = [0, 100]; // first interval of random numbers
 const [minRandomInterval2, maxRandomInterval2] = [0, 100]; // second interval of random numbers
 const mathSymbols = {
@@ -31,9 +30,13 @@ class CalcTask {
     this.number1 = number1;
     this.number2 = number2;
     this.symbol = symbol;
+    this.greting = 'What is the result of the expression?';
   }
   solve() {
     return String(mathSymbols[this.symbol](this.number1, this.number2));
+  }
+  getGreeting() {
+    return this.greeting;
   }
   toString() {
     return `${this.number1} ${this.symbol} ${this.number2}`;
@@ -42,6 +45,6 @@ class CalcTask {
 
 // -------------------------------------------------------------------------------
 // ==================== making game object =======================================
-const calcMain = gameMaker('What is the result of the expression?\n', gameSteps, getName, getAnswer, calcRandom, CalcTask);
+const calcMain = gameMaker(calcRandom, CalcTask);
 
 export default calcMain;

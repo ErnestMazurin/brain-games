@@ -1,9 +1,8 @@
 import gameMaker from '..';
-import { getName, getAnswer, random } from '../functions';
+import { random } from '../functions';
 
 // -------------------------------------------------------------------------------
 // =========================== game config =======================================
-const gameSteps = 3; // number of steps
 const [minRandomInterval1, maxRandomInterval1] = [0, 10000]; // interval of random numbers
 
 // -------------------------------------------------------------------------------
@@ -37,6 +36,10 @@ const balance = (arr) => {
 class BalanceTask {
   constructor(number) {
     this.number = number;
+    this.greeting = 'Balance the given number.';
+  }
+  getGreeting() {
+    return this.greeting;
   }
   solve() {
     return array2String(balance(number2Array(this.number)));
@@ -48,6 +51,6 @@ class BalanceTask {
 
 // -------------------------------------------------------------------------------
 // ==================== making game object =======================================
-const balanceMain = gameMaker('Balance the given number.\n', gameSteps, getName, getAnswer, balanceRandom, BalanceTask);
+const balanceMain = gameMaker(balanceRandom, BalanceTask);
 
 export default balanceMain;
