@@ -30,7 +30,7 @@ class CalcTask {
     this.number1 = number1;
     this.number2 = number2;
     this.symbol = symbol;
-    this.greting = 'What is the result of the expression?';
+    this.greeting = 'What is the result of the expression?';
   }
   solve() {
     return String(mathSymbols[this.symbol](this.number1, this.number2));

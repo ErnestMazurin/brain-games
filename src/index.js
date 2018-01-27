@@ -1,4 +1,4 @@
-import { userName, getAnswer } from './functions';
+import { getName, getAnswer } from './functions';
 
 const gameCycle = (stepsNumber, getRandom, Task, counter) => {
   if (counter >= stepsNumber) {
@@ -17,12 +17,12 @@ const gameCycle = (stepsNumber, getRandom, Task, counter) => {
 
 const gameMaker = (getRandom, Task) => {
   const main = () => {
-    const greetTask = new Task(getRandom);
+    const greetTask = new Task(getRandom());
     const gameGreeting = greetTask.getGreeting();
     console.log('Welcome to the Brain Games!');
     console.log(`${gameGreeting}\n`);
     const stepsNumber = 3;
-    const gamer = userName();
+    const gamer = getName();
     const gameResult = gameCycle(stepsNumber, getRandom, Task, 0);
     if (gameResult < stepsNumber) {
       console.log(`Let's try again, ${gamer}!`);
