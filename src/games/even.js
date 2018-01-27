@@ -1,34 +1,18 @@
-import gameMaker from '..';
+import game from '..';
 import { random } from '../functions';
 
 // -------------------------------------------------------------------------------
 // =========================== game config =======================================
 const [minRandomInterval, maxRandomInterval] = [0, 100]; // interval of random numbers
-
-// -------------------------------------------------------------------------------
-// ======================= input data functions ==================================
 const evenRandom = random(minRandomInterval, maxRandomInterval); // task`s data
 
-// -------------------------------------------------------------------------------
 // ============================== task object ====================================
-class EvenTask {
-  constructor(number) {
-    this.number = number;
-    this.greeting = 'Answer "yes" if number even otherwise answer "no"';
-  }
-  getGreeting() {
-    return this.greeting;
-  }
-  solve() {
-    return this.number % 2 === 0 ? 'yes' : 'no';
-  }
-  toString() {
-    return String(this.number);
-  }
-}
+const evenGame = () => {
+  const greeting = 'Answer "yes" if number even otherwise answer "no"';
+  const solve = num => (num % 2 === 0 ? 'yes' : 'no');
+  const toString = num => String(num);
 
-// -------------------------------------------------------------------------------
-// ==================== making game object =======================================
-const evenMain = gameMaker(evenRandom, EvenTask);
+  game(greeting, solve, toString, evenRandom);
+};
 
-export default evenMain;
+export default evenGame;

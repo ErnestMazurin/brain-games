@@ -1,4 +1,4 @@
-import gameMaker from '..';
+import game from '..';
 import { random } from '../functions';
 
 // -------------------------------------------------------------------------------
@@ -10,9 +10,7 @@ const mathSymbols = {
   '-': (a, b) => a - b,
   '*': (a, b) => a * b,
 };
-
-// -------------------------------------------------------------------------------
-// ======================= input data functions ==================================
+// ======================= input data function ==================================
 // task`s data
 const calcRandom = () => {
   const number1 = random(minRandomInterval1, maxRandomInterval1)();
@@ -23,28 +21,13 @@ const calcRandom = () => {
 };
 
 // -------------------------------------------------------------------------------
-// ============================== task object ====================================
-class CalcTask {
-  constructor(args) {
-    const [number1, symbol, number2] = args;
-    this.number1 = number1;
-    this.number2 = number2;
-    this.symbol = symbol;
-    this.greeting = 'What is the result of the expression?';
-  }
-  solve() {
-    return String(mathSymbols[this.symbol](this.number1, this.number2));
-  }
-  getGreeting() {
-    return this.greeting;
-  }
-  toString() {
-    return `${this.number1} ${this.symbol} ${this.number2}`;
-  }
-}
-
-// -------------------------------------------------------------------------------
 // ==================== making game object =======================================
-const calcMain = gameMaker(calcRandom, CalcTask);
+const calcGame = () => {
+  const greeting = 'What is the result of the expression?';
+  const solve = content => String(mathSymbols[content[1]](content[0], content[2]));
+  const toString = content => content.join(' ');
 
-export default calcMain;
+  game(greeting, solve, toString, calcRandom);
+};
+
+export default calcGame;

@@ -1,36 +1,33 @@
 import { getName, getAnswer } from './functions';
 
-const gameCycle = (stepsNumber, getRandom, Task, counter) => {
+const gameCycle = (stepsNumber, solve, toString, random, counter) => {
   if (counter >= stepsNumber) {
     return counter;
   }
-  const tasklItem = new Task(getRandom());
-  console.log(`Question: ${tasklItem.toString()}`);
+  const content = random();
+  console.log(`Question: ${toString(content)}`);
   const answer = getAnswer();
-  if (tasklItem.solve() === answer) {
+  if (solve(content) === answer) {
     console.log('Correct!');
-    return gameCycle(stepsNumber, getRandom, Task, counter + 1);
+    return gameCycle(stepsNumber, solve, toString, random, counter + 1);
   }
-  console.log(`'${answer}' is wrong answer ;(. Correct answer was '${tasklItem.solve()}'.`);
+  console.log(`'${answer}' is wrong answer ;(. Correct answer was '${solve(content)}'.`);
   return counter;
 };
 
-const gameMaker = (getRandom, Task) => {
-  const main = () => {
-    const greetTask = new Task(getRandom());
-    const gameGreeting = greetTask.getGreeting();
-    console.log('Welcome to the Brain Games!');
-    console.log(`${gameGreeting}\n`);
-    const stepsNumber = 3;
-    const gamer = getName();
-    const gameResult = gameCycle(stepsNumber, getRandom, Task, 0);
-    if (gameResult < stepsNumber) {
-      console.log(`Let's try again, ${gamer}!`);
-    } else {
-      console.log(`Congratulations, ${gamer}!`);
-    }
-  };
-  return main;
+const game = (greeting, solve, toString, random) => {
+  console.log('Welcome to the Brain Games!');
+  console.log(`${greeting}\n`);
+  const stepsNumber = 3;
+  const gamer = getName();
+
+  const gameResult = gameCycle(stepsNumber, solve, toString, random, 0);
+
+  if (gameResult < stepsNumber) {
+    console.log(`Let's try again, ${gamer}!`);
+  } else {
+    console.log(`Congratulations, ${gamer}!`);
+  }
 };
 
-export default gameMaker;
+export default game;

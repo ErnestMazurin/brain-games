@@ -1,4 +1,4 @@
-import gameMaker from '..';
+import game from '..';
 import { random } from '../functions';
 
 // -------------------------------------------------------------------------------
@@ -10,7 +10,7 @@ const [minRandomInterval1, maxRandomInterval1] = [0, 10000]; // interval of rand
 const balanceRandom = random(minRandomInterval1, maxRandomInterval1); // task`s data
 
 // -------------------------------------------------------------------------------
-// ============================== task object ====================================
+// ==================== making game ==============================================
 const number2Array = num => String(num).split('').map(x => Number(x));
 const array2String = arr => arr.map(x => String(x)).join('');
 
@@ -24,33 +24,20 @@ const balance = (arr) => {
   if (isBalance(arr)) {
     return arr;
   }
-  const [min, max] = [Math.min(...arr), Math.max(...arr)];
-  const [imin, imax] = [arr.indexOf(min), arr.indexOf(max)];
-  const newArr = arr.slice();
-  newArr[imin] = min + 1; // A little bit mutable style.
-  newArr[imax] = max - 1; // But, I think, it`s ok, because I working whith copy.
-  newArr.sort((a, b) => a - b); // Or not?
+
+  const [min, ...rest] = arr.slice().sort((a, b) => a - b); // absolutely immutable now! >.<
+  const [max, ...middle] = rest.slice().sort((a, b) => b - a);
+  const newArr = middle.concat(min + 1, max - 1).sort((a, b) => a - b);
+
   return balance(newArr);
 };
 
-class BalanceTask {
-  constructor(number) {
-    this.number = number;
-    this.greeting = 'Balance the given number.';
-  }
-  getGreeting() {
-    return this.greeting;
-  }
-  solve() {
-    return array2String(balance(number2Array(this.number)));
-  }
-  toString() {
-    return String(this.number);
-  }
-}
+const balanceGame = () => {
+  const greeting = 'Balance the given number.';
+  const solve = number => array2String(balance(number2Array(number)));
+  const toString = number => String(number);
 
-// -------------------------------------------------------------------------------
-// ==================== making game object =======================================
-const balanceMain = gameMaker(balanceRandom, BalanceTask);
+  game(greeting, solve, toString, balanceRandom);
+};
 
-export default balanceMain;
+export default balanceGame;
