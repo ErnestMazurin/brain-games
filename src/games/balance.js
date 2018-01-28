@@ -4,7 +4,6 @@ import { random } from '../functions';
 // -------------------------------------------------------------------------------
 // =========================== game config =======================================
 const [minRandomInterval1, maxRandomInterval1] = [0, 10000]; // interval of random numbers
-const balanceRandom = random(minRandomInterval1, maxRandomInterval1); // task`s data
 
 // -------------------------------------------------------------------------------
 // ==================== making game ==============================================
@@ -21,20 +20,21 @@ const balance = (arr) => {
   if (isBalance(arr)) {
     return arr;
   }
-
   const [min, ...rest] = arr.slice().sort((a, b) => a - b); // absolutely immutable now! >.<
   const [max, ...middle] = rest.slice().sort((a, b) => b - a);
   const newArr = middle.concat(min + 1, max - 1).sort((a, b) => a - b);
-
   return balance(newArr);
 };
 
 const balanceGame = () => {
   const greeting = 'Balance the given number.';
-  const solve = number => array2String(balance(number2Array(number)));
-  const toString = number => String(number);
+  const balanceTask = () => {
+    const question = random(minRandomInterval1, maxRandomInterval1)();
+    const answer = array2String(balance(number2Array(question)));
+    return [question, answer];
+  };
 
-  game(greeting, solve, toString, balanceRandom);
+  game(greeting, balanceTask);
 };
 
 export default balanceGame;

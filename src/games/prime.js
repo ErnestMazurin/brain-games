@@ -4,7 +4,6 @@ import { random } from '../functions';
 // -------------------------------------------------------------------------------
 // =========================== game config =======================================
 const [minRandomInterval, maxRandomInterval] = [0, 100]; // interval of random numbers
-const primeRandom = random(minRandomInterval, maxRandomInterval); // task`s data
 
 // -------------------------------------------------------------------------------
 // ============================== making game ====================================
@@ -18,16 +17,18 @@ const isPrime = (number) => {
     }
     return iter(i + 1);
   };
-
   return iter(2);
 };
 
 const primeGame = () => {
   const greeting = 'Is this number prime?';
-  const solve = num => (isPrime(num) ? 'yes' : 'no');
-  const toString = num => String(num);
+  const primeTask = () => {
+    const question = random(minRandomInterval, maxRandomInterval)();
+    const answer = isPrime(question) ? 'yes' : 'no';
+    return [String(question), answer];
+  };
 
-  game(greeting, solve, toString, primeRandom);
+  game(greeting, primeTask);
 };
 
 export default primeGame;

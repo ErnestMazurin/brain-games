@@ -1,27 +1,27 @@
 import { getName, getAnswer } from './functions';
 
-const gameCycle = (stepsNumber, solve, toString, random, counter) => {
+const gameCycle = (stepsNumber, task, counter) => {
   if (counter >= stepsNumber) {
     return counter;
   }
-  const content = random();
-  console.log(`Question: ${toString(content)}`);
+  const [taskQuestion, taskAnswer] = task();
+  console.log(`Question: ${taskQuestion}`);
   const answer = getAnswer();
-  if (solve(content) === answer) {
+  if (answer === taskAnswer) {
     console.log('Correct!');
-    return gameCycle(stepsNumber, solve, toString, random, counter + 1);
+    return gameCycle(stepsNumber, task, counter + 1);
   }
-  console.log(`'${answer}' is wrong answer ;(. Correct answer was '${solve(content)}'.`);
+  console.log(`'${answer}' is wrong answer ;(. Correct answer was '${taskAnswer}'.`);
   return counter;
 };
 
-const game = (greeting, solve, toString, random) => {
+const game = (greeting, task) => {
   console.log('Welcome to the Brain Games!');
   console.log(`${greeting}\n`);
   const stepsNumber = 3;
   const gamer = getName();
 
-  const gameResult = gameCycle(stepsNumber, solve, toString, random, 0);
+  const gameResult = gameCycle(stepsNumber, task, 0);
 
   if (gameResult < stepsNumber) {
     console.log(`Let's try again, ${gamer}!`);
